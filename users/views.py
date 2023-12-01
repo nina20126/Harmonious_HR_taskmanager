@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 
 class RegisterPage(FormView):
    template_name = 'users/register.html'
@@ -31,3 +32,8 @@ class CustomLoginView(LoginView):
 
    def get_success_url(self):
       return reverse_lazy('tasks')
+
+
+@login_required
+def profile(request):
+   return render(request, 'users/profile.html')
