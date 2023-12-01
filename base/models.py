@@ -14,6 +14,7 @@ class Task(models.Model):
     status = models.CharField(max_length=25, choices=TicketStatus.choices, default=TicketStatus.start)
     complete = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+    due = models.DateTimeField(blank=True, null=True, default=None)
 
     def __str__(self):
         return self.title
