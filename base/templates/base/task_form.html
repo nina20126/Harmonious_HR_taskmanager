@@ -3,13 +3,23 @@
 
 <div class="header-bar">
     <a href="{% url 'tasks' %}">&#8592; Back</a>
+    <p>{{task.created}}</p>
 </div>
 
 <div class="card-body">
     <form method="POST" action="">
         {% csrf_token %}
-        {{form.as_p}}
-        <input class="button" type="submit" value="Submit">
+        <label>Task: </label>
+        {{form.title}}
+        <label>Due: </label>
+        <input class="date-input" type="date" name="due" value="{% if task.due %}{{ task.due|date:"Y-m-d" }}{% endif %}">
+        <label>Description: </label>
+        {{ form.description }}
+        <label>Complete Task: </label>
+        {{ form.complete }}
+        <div style="text-align: center;">
+            <input class="button" type="submit" value="Submit">
+        </div>  
     </form>
 </div>
 

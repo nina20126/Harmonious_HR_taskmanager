@@ -47,8 +47,9 @@ class TaskCreate(LoginRequiredMixin, CreateView):
       return super(TaskCreate, self).form_valid(form)
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
-   model = Task 
-   fields = ['title', 'description', 'complete']
+   model = Task
+   context_object_name = 'task'
+   fields = ['title', 'due', 'description', 'complete']
    success_url = reverse_lazy('tasks')
 
 class DeleteView(LoginRequiredMixin, DeleteView):
