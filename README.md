@@ -1,6 +1,20 @@
 # Harmonious HR Taskmanager
 
-### Setup
+This is a Django project, so to make it work you should have django and python installed. You can istall django by typing command
+```
+pip install django
+```
+or check if you already have django installed by typing command
+```
+py -m django --version
+```
+Check the version of python 
+```
+python --version
+```
+... or [install python](https://www.python.org/downloads/) if you don't have it
+
+### Project Setup
 
 Clone repository
 ```
