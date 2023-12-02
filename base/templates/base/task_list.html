@@ -17,34 +17,45 @@
 </div>
 
 <div class="task-items-wrapper">
-    {% for task in tasks %}
-        <div class="task-wrapper">
-            {% if task.complete %}
-                <div class="task-title">
-                    <div class="task-complete-icon"></div>
-                    <i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s></i>
-                </div>
-                
-                {% else %}
-                <div class="task-title">
-                    <div class="task-incomplete-icon"></div>
-                    <a href="{% url 'task-update' task.id %}">{{task}}</a>
-                </div>
-              
-                {% endif %}
-                <div>
-                    <p>Assigned: {{user}}</p>
-                </div>
-                <div>
-                    <p>Status: {{task.status}}</p>
-                </div>
-                <a class ="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
-            
-        </div>
-
-    {% empty %}
-        <h3>No items in list</h3>
-    {% endfor %}
+    {% if tasks %}
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Assigned</th>
+                <th>Status</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td class="task-title">
+                    {% if task.complete %}
+                        <div class="task-complete-icon"></div>
+                        <s><a href="{% url 'task-update' task.id %}">{{ task }}</a></s>
+                    {% else %}
+                        <div class="task-incomplete-icon"></div>
+                        <a href="{% url 'task-update' task.id %}">{{ task }}</a>
+                    {% endif %}
+                </td>
+                <td>{{ user }}</td>
+                <td>{{ task.status }}</td>
+                <td>
+                    <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No items in the list</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h3>No items in list</h3>
+    {% endif %}
 </div>
+
 
 {% endblock content %}

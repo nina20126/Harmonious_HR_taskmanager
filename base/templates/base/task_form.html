@@ -31,7 +31,7 @@
 
         {% if task.id %}
         <div style="text-align: center;">
-            <button class="launch-button" style="margin-bottom: 20px; margin-top: 10px;" type="button" onclick="showAlert()">Launch</button>
+            <button class="launch-button" style="margin-bottom: 20px; margin-top: 10px;" type="button" onclick="redirectProfile()">Launch</button>
         </div>
         {% endif%}
 
@@ -49,8 +49,8 @@
 </div>
 
 <script>
-    function showAlert() {
-        alert('Automations Launching');
+    const redirectProfile = () => {
+        window.location.href = '{% url "profile" %}';
     }
 </script>
 
