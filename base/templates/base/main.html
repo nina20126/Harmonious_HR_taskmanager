@@ -36,6 +36,18 @@
             font-weight: 600;
         }
 
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: not-allowed;
+        }
+
         nav {
             width: 100%;
             background: linear-gradient(39deg, rgba(49, 166, 255, 1) 0%, rgba(90, 213, 255, 1) 43%, rgba(66, 192, 250, 1) 100%);
@@ -119,8 +131,6 @@
             margin: 0 auto; /* Center the content horizontally */
         }
         
-        
-
         .task-wrapper {
             display: flex;
             align-items: center;
@@ -321,5 +331,33 @@
 
         {% endblock content %}
     </div>
+    <script>
+        function toggleCheckboxes() {
+            const button = document.getElementById('activateButton');
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.disabled = !checkbox.disabled;
+                checkbox.style.cursor = checkbox.disabled ? 'not-allowed' : 'pointer';
+            });
+            button.innerText = button.innerText === 'Activate' ? 'Deactivate' : 'Activate';
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const title = document.getElementById('taskListTitle');
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateTitleColor);
+            });
+            function updateTitleColor() {
+                if (areAllTasksCompleted()) {
+                    title.style.color = 'green';
+                } else {
+                    title.style.color = 'black';
+                }
+            }
+            function areAllTasksCompleted() {
+                return [...checkboxes].every(checkbox => checkbox.checked);
+            }
+        });
+    </script>
 </body>
 </html>
