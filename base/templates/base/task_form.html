@@ -2,25 +2,56 @@
 {% block content %}
 
 <div class="header-bar">
-    <a href="{% url 'tasks' %}">&#8592; Back</a>
-    <p>{{task.created}}</p>
+    {% if task.id  %}
+    <div class="header-info">
+        <h3>Assigned: {{user}}</h3>
+        <h3>Status: {{task.status}}</h3>
+        <h3 style="text-align: right;">Created: {{task.created}}</h3>
+    </div>
+    {% endif %}
 </div>
 
 <div class="card-body">
+    {% if task.id %}
+    <div class="delete-link-wrapper">
+        <a class ="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
+    </div>
+    {% endif %}
+    
     <form method="POST" action="">
         {% csrf_token %}
         <label>Task: </label>
         {{form.title}}
+        <label>Complete Task: </label>
+        {{ form.complete }}
         <label>Due: </label>
         <input class="date-input" type="date" name="due" value="{% if task.due %}{{ task.due|date:"Y-m-d" }}{% endif %}">
         <label>Description: </label>
         {{ form.description }}
-        <label>Complete Task: </label>
-        {{ form.complete }}
+
+        {% if task.id %}
+        <div style="text-align: center;">
+            <button class="launch-button" style="margin-bottom: 20px; margin-top: 10px;" type="button" onclick="showAlert()">Launch</button>
+        </div>
+        {% endif%}
+
+        {% if task.id %} 
         <div style="text-align: center;">
             <input class="button" type="submit" value="Submit">
-        </div>  
+        </div>
+        {% else %}
+        <div style="text-align: center;">
+            <input class="button" type="submit" value="Add Task">
+        </div>
+        {% endif %}
+
     </form>
 </div>
+
+<script>
+    function showAlert() {
+        alert('Automations Launching');
+    }
+</script>
 
 {% endblock content %}
