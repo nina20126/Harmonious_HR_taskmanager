@@ -131,7 +131,8 @@
             margin: 0 auto; /* Center the content horizontally */
         }
         
-        .task-wrapper {
+        
+       .task-wrapper {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -163,7 +164,7 @@
             width: 20px;
             background-color: rgb(218, 218, 218);
             border-radius: 50%;
-        }
+        } 
 
         .delete-link {
             text-decoration: none;
@@ -173,6 +174,21 @@
             line-height: 0;
             padding: 20px 10px;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Optional: Remove borders between cells */
+        }
+
+        th, td {
+            padding: 8px; /* Adjust padding as needed */
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Optional: Add borders between rows */
+        }
+
+        th {
+            background-color: #f2f2f2; /* Optional: Style table header */
+        }       
 
         /*Handle Classes*/
 
@@ -205,12 +221,11 @@
             opacity: 0.6;
         }
 
-
         #add-link {
-            color: #EB796F;
+            color: rgba(49,166,255,1);
             text-decoration: none;
             font-size: 42px;
-            text-shadow: 1px 1px #81413b;
+            text-shadow: 1px 1px rgba(90,213,255,1);
         }
 
         #search-add-wrapper {
@@ -301,8 +316,6 @@
             margin: 5px 0;
             margin-right: 20px;
         }
-
-
     </style>
 </head>
 <body>
